@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 const Search = ({ handleSearch }) => {
 	const [searchVal, setSearchVal] = useState("")
 	useEffect(() => {
-		console.log(searchVal)
 		const time = setTimeout(() => handleSearch(searchVal), 300)
 		return () => {
 			clearTimeout(time)

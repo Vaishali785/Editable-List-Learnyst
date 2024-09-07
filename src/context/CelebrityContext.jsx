@@ -32,14 +32,12 @@ const celebReducer = (state, action) => {
 	}
 	if (action.type == "HANDLE_SEARCH") {
 		if (action.name != "") {
-			console.log(state.data)
 			let filteredItems = data.filter((item) => {
 				let enteredName = action.name.toLowerCase()
 				let itemName = item.first.toLowerCase()
 
 				return itemName.includes(enteredName)
 			})
-			console.log(filteredItems)
 			return {
 				...state,
 				data: filteredItems,
@@ -67,8 +65,10 @@ const celebReducer = (state, action) => {
 		}
 	}
 	if (action.type == "HANDLE_SAVE") {
-		let index = action.id - 1
+		let index = state.data.findIndex((item) => item.id == action.id)
 		state.data[index] = action.editedData
+			? action.editedData
+			: state.data[index]
 		return { ...state, editIndex: null }
 	}
 	if (action.type == "HANDLE_ENABLE_SAVE") {

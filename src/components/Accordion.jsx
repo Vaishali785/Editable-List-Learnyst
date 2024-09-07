@@ -78,6 +78,7 @@ export function AccordionCustomIcon({ item }) {
 			/>
 		</svg>
 	)
+
 	return (
 		<>
 			<Accordion
@@ -221,6 +222,7 @@ export function AccordionCustomIcon({ item }) {
 						</div>
 						<Actions
 							id={item.id}
+							item={item}
 							editedData={itemData}
 							setEditedData={setItemData}
 						/>

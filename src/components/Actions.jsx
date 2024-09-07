@@ -2,7 +2,7 @@
 import { useContext } from "react"
 import { CelebrityContext } from "../context/CelebrityContext"
 
-const Actions = ({ id, editedData, setEditedData }) => {
+const Actions = ({ id, item, editedData, setEditedData }) => {
 	const {
 		handleEdit,
 		editIndex,
@@ -21,13 +21,7 @@ const Actions = ({ id, editedData, setEditedData }) => {
 						className="cancel p-2 hover:bg-gray-200 hover:rounded-full hover:cursor-pointer border-[1px] border-transparent hover:border-red-400"
 						onClick={() => {
 							setEditedData({
-								"id": "",
-								"first": "",
-								"last": "",
-								"dob": "",
-								"gender": "",
-								"country": "",
-								"description": "",
+								...item,
 							})
 							handleEdit(null)
 						}}
@@ -43,7 +37,10 @@ const Actions = ({ id, editedData, setEditedData }) => {
 					</button>
 					<button
 						className="save p-2 hover:bg-gray-200 hover:rounded-full hover:cursor-pointer  border-[1px] border-transparent hover:border-green-400 disabled:opacity-70 disabled:hover:cursor-default disabled:bg-transparent disabled:border-transparent"
-						onClick={() => handleSave(id, editedData)}
+						onClick={() => {
+							setEditedData({ ...editedData })
+							handleSave(id, editedData)
+						}}
 						disabled={!enableSave}
 					>
 						<svg
