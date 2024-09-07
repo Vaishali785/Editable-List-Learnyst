@@ -55,7 +55,7 @@ export function AccordionCustomIcon({ item }) {
 	const handleItemChange = (name, val) => {
 		// enable save button on change
 		handleSaveBtn()
-		if (val.trim() !== "") {
+		if (val !== "") {
 			if (name == "country" && /\d/.test(val)) {
 				//checks if it contains number
 				handleError("Numbers not allowed in Country field!")
@@ -126,7 +126,9 @@ export function AccordionCustomIcon({ item }) {
 												new Date(item.dob).getFullYear()
 										  } years`
 								}
-								onChange={(e) => handleItemChange(e)}
+								onChange={(e) =>
+									handleItemChange(e.target.name, e.target.value)
+								}
 								disabled={editIndex == item.id ? false : true}
 							/>
 						</div>
